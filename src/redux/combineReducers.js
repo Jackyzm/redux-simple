@@ -1,9 +1,11 @@
+// 处理reducers
 const combineReducers = (reducers) => {
     // console.log(reducers);
     if (typeof reducers === 'function') return reducers;
+    // 初始化的时候获取reducers中传的初始值
     let initState = {};
     const reducersEntries = Object.entries(reducers)
-    reducersEntries.map((item)=>{
+    reducersEntries.map((item) => {
         const [key, func] = item;
         initState[key] = func(undefined, {});
         return null;

@@ -1,4 +1,12 @@
-const createStore = (reducer, initState) => {
+const createStore = (reducer, initState, enhancer) => {
+    if (enhancer) {
+        if (typeof enhancer !== 'function') {
+          throw new Error('Expected the enhancer to be a function.')
+        }
+    
+        return enhancer(createStore)(reducer, initState)
+    }
+
     let currentState = initState;
     let listener;
 
@@ -18,6 +26,7 @@ const createStore = (reducer, initState) => {
         return currentState;
     }
 
+    // 初始化 将createStore时传进来的初始state合并进state中
     dispatch({ type: '@@INIT' });
 
     return {

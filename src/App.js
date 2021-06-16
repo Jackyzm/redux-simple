@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from './react-redux';
 
-const App = () =>{
+const App = (props) =>{
+    console.log(props);
     return (<div>App</div>);
 }
-
-export default App;
+console.log(connect()(App))
+export default connect()(App);
